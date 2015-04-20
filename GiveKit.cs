@@ -39,10 +39,14 @@ namespace ApokPT.RocketPlugins
                         kits.Add(kit);
                     }
                 }
-                timer = new System.Threading.Timer(obj => { 
-                    foreach (Kit kit in kits) Give(player, kit.Name, player.CharacterName); 
-                    timer.Dispose(); 
-                }, null, 1000, Timeout.Infinite);
+                if (kits.Count >= 0)
+                {
+                    timer = new System.Threading.Timer(obj =>
+                    {
+                        foreach (Kit kit in kits) Give(player, kit.Name, player.CharacterName);
+                        timer.Dispose();
+                    }, null, 1000, Timeout.Infinite);
+                }
             }
         }
 
