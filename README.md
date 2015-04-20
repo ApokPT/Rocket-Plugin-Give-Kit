@@ -11,8 +11,10 @@ Uses a configuration similar to kits, so you can copy your Kits to the GiveKit c
 Command | Action
 ------- | -------
 /givekit <kit>/<player>					| gives kit to player
-/givekit <kit>						| gives kit to caller
-/givekit						| show available kits
+/givekit <kit>							| gives kit to caller
+/givekit ?/<player>						| gives a random kit to the player
+/givekit ?								| gives a random kit to the caller
+/givekit								| show available kits
 
 
 ## Available Permissions
@@ -23,6 +25,7 @@ Permission | Action
 <Command>givekit.[kit_name]</Command>			| allow caller to use [kit_name]
 <Command>givekit.*</Command>				| allow caller to list, use and share any avaiable kit
 <Command>givekit.onjoin.[kit_name]</Command>		| will give [kit_name] to the player when he joins the server
+<Command>givekit.onjoin.?</Command>		| will give a random kit to the player when he joins the server
 _(if you add multiple givekit.onlin permissions, it will give them all to that player)_
 
 
@@ -38,5 +41,5 @@ _(still some issues with the strip feature because of some problems with Rocket 
 ## Todo List:
 * ~~Implement per-kit cooldown and global cooldown;~~
 * ~~Option to strip player before giving a new kit;~~
-* Command /givekit random
+* ~~Command /givekit random~~
 * ~~On join server givekit (still thinking how will this be)~~
