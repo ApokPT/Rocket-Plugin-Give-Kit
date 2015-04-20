@@ -30,7 +30,8 @@ _(if you add multiple givekit.onlin permissions, it will give them all to that p
 Option | Action
 ------- | -------
 StripBeforeGiving					| Strips the player of all items before giving the new kit 
-ResetCooldownOnDeath					| Resets global cooldown and all kits cooldown on players death
+ResetCooldownOnDeath				| Resets global cooldown and all kits cooldown on players death
+Enabled								| Enables and disables the addon (does not apply to admins)
 _(still some issues with the strip feature because of some problems with Rocket 3.3.0 Beta)_
 
 
