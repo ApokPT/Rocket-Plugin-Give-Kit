@@ -10,31 +10,33 @@ Uses a configuration similar to kits, so you can copy your Kits to the GiveKit c
 ## Available Commands
 Command | Action
 ------- | -------
-/givekit <kit>/<player>					| gives kit to player
-/givekit <kit>							| gives kit to caller
-/givekit ?/<player>						| gives a random kit to the player
-/givekit ?								| gives a random kit to the caller
 /givekit								| show available kits
+/givekit [kit_name]							| gives [kit] to caller
+/givekit [kit_name]/[player]					| gives [kit] to [player]
+/givekit ?								| gives a random kit to the caller
+/givekit ?/[player]						| gives a random kit to the [player]
+
+
 
 
 ## Available Permissions
 Permission | Action
 ------- | -------
-<Command>givekit</Command>				| allow caller to list his available kits
-<Command>givekit.share</Command>			| allow caller to give kits to another player
-<Command>givekit.[kit_name]</Command>			| allow caller to use [kit_name]
-<Command>givekit.*</Command>				| allow caller to list, use and share any avaiable kit
-<Command>givekit.onjoin.[kit_name]</Command>		| will give [kit_name] to the player when he joins the server
-<Command>givekit.onjoin.?</Command>		| will give a random kit to the player when he joins the server
+givekit				| allow caller to list his available kits
+givekit.share			| allow caller to give kits to another player
+givekit.[kit_name]			| allow caller to use [kit_name]
+givekit.*				| allow caller to list, use and share any avaiable kit
+givekit.onjoin.[kit_name]		| will give [kit_name] to the player when he joins the server
+givekit.onjoin.?		| will give a random kit to the player when he joins the server
 _(if you add multiple givekit.onlin permissions, it will give them all to that player)_
 
 
 ## Other Options
 Option | Action
 ------- | -------
+Enabled								| Enables and disables the addon (does not apply to admins)
 StripBeforeGiving					| Strips the player of all items before giving the new kit 
 ResetCooldownOnDeath				| Resets global cooldown and all kits cooldown on players death
-Enabled								| Enables and disables the addon (does not apply to admins)
 _(still some issues with the strip feature because of some problems with Rocket 3.3.0 Beta)_
 
 
