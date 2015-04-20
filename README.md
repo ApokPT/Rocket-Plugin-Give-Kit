@@ -29,7 +29,7 @@ Option | Action
 StripBeforeGiving								| Strips the player of all items before giving the new kit (still some issues with this feature because of some problems with Rocket 3.3.0 Beta)
 ResetCooldownOnDeath							| Resets global cooldown and all kits cooldown on players death
  
- ## Todo List:
+## Todo List:
 * ~~Implement per-kit cooldown and global cooldown;~~
 * ~~Option to strip player before giving a new kit;~~
 * Command /givekit random
