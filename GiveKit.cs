@@ -1,14 +1,9 @@
-﻿using Rocket;
-using Rocket.Logging;
-using Rocket.RocketAPI;
-using Rocket.RocketAPI.Events;
+﻿using Rocket.RocketAPI;
 using SDG;
 using Steamworks;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Globalization;
-using UnityEngine;
 using System.Threading;
 
 namespace ApokPT.RocketPlugins
@@ -34,7 +29,6 @@ namespace ApokPT.RocketPlugins
 
         private void RocketServerEvents_OnPlayerConnected(RocketPlayer player)
         {
-            byte v = 0;
             List<Kit> kits = new List<Kit>();
             if (getGlobalCooldown(player) <= 0)
             {
@@ -43,17 +37,19 @@ namespace ApokPT.RocketPlugins
                     if (player.Permissions.Contains("givekit.onjoin." + kit.Name.ToLower()) && getKitCooldown(player, kit.Name) <= 0)
                     {
                         kits.Add(kit);
-                        v++;
                     }
                 }
-                timer = new System.Threading.Timer(obj => { foreach (Kit kit in kits) Give(player, kit.Name, player.CharacterName); timer.Dispose(); }, null, 500, Timeout.Infinite);
+                timer = new System.Threading.Timer(obj => { 
+                    foreach (Kit kit in kits) Give(player, kit.Name, player.CharacterName); 
+                    timer.Dispose(); 
+                }, null, 1000, Timeout.Infinite);
             }
         }
 
 
         private void RocketPlayerEvents_OnPlayerDeath(RocketPlayer player, EDeathCause cause, ELimb limb, CSteamID murderer)
         {
-            if (cause != EDeathCause.SUICIDE)
+            if (player.IsAdmin || cause != EDeathCause.SUICIDE)
             {
                 if (GlobalCooldown.ContainsKey(player.ToString()))
                 {
@@ -199,7 +195,7 @@ namespace ApokPT.RocketPlugins
             {
                 double lastRequest = (DateTime.Now - GiveKit.IndividualCooldown[caller.ToString() + kit.Name]).TotalSeconds;
 
-                if (lastRequest < kit.Cooldown)
+                if (!caller.IsAdmin && lastRequest < kit.Cooldown)
                 {
                     return (int)(kit.Cooldown - lastRequest);
                 }

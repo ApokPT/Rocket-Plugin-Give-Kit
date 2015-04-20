@@ -7,7 +7,7 @@
     <ProjectGuid>{30A6EFEB-6DA4-4777-8305-17B5CA5CD2A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApokPT.Rocket</RootNamespace>
+    <RootNamespace>ApokPT.RocketPlugins</RootNamespace>
     <AssemblyName>GiveKit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -54,6 +54,8 @@
     <Compile Include="GiveKit.cs" />
     <Compile Include="GiveKitCommand.cs" />
     <Compile Include="GiveKitConfiguration.cs" />
+    <Compile Include="Kit.cs" />
+    <Compile Include="KitItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

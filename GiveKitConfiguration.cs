@@ -30,33 +30,4 @@ namespace ApokPT.RocketPlugins
             }
         }
     }
-
-    public class Kit
-    {
-        public Kit() { }
-
-        public string Name;
-
-        [XmlArrayItem(ElementName = "Item")]
-        public List<KitItem> Items;
-        public int Cooldown = 0;
-    }
-
-    public class KitItem
-    {
-
-        public KitItem() { }
-
-        public KitItem(ushort itemId, byte amount)
-        {
-            ItemId = itemId;
-            Amount = amount;
-        }
-
-        [XmlAttribute("id")]
-        public ushort ItemId;
-
-        [XmlAttribute("amount")]
-        public byte Amount;
-    }
 }

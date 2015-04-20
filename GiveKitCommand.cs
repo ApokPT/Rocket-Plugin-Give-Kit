@@ -1,10 +1,6 @@
-﻿using Rocket;
-using Rocket.Logging;
-using Rocket.RocketAPI;
-using SDG;
+﻿using Rocket.RocketAPI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ApokPT.RocketPlugins
 {
@@ -30,8 +26,8 @@ namespace ApokPT.RocketPlugins
             var callParams = command.Split('/');
 
 
-            bool hasListPermission = caller.Permissions.Contains("givekit") || caller.Permissions.Contains("givekit.*");
-            bool hasSharePermission = caller.Permissions.Contains("givekit.share") || caller.Permissions.Contains("givekit.*");
+            bool hasListPermission = caller.IsAdmin || caller.Permissions.Contains("givekit") || caller.Permissions.Contains("givekit.*");
+            bool hasSharePermission = caller.IsAdmin || caller.Permissions.Contains("givekit.share") || caller.Permissions.Contains("givekit.*");
 
             double gCD = GiveKit.getGlobalCooldown(caller);
             if (gCD > 0)
@@ -52,7 +48,7 @@ namespace ApokPT.RocketPlugins
 
                     foreach (Kit kit in GiveKit.Instance.Configuration.Kits)
                     {
-                        if (caller.Permissions.Contains("givekit." + kit.Name.ToLower()) || caller.Permissions.Contains("givekit.*"))
+                        if (caller.IsAdmin || caller.Permissions.Contains("givekit." + kit.Name.ToLower()) || caller.Permissions.Contains("givekit.*"))
                         {
                             if (v == 7)
                             {
@@ -70,7 +66,7 @@ namespace ApokPT.RocketPlugins
 
                     kitLists.Add(kits);
 
-                    if (caller.Permissions.Contains("givekit.share") || caller.Permissions.Contains("givekit.*"))
+                    if (caller.IsAdmin || caller.Permissions.Contains("givekit.share") || caller.Permissions.Contains("givekit.*"))
                     {
                         RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_instructions_share"));
                     }else{
@@ -100,7 +96,7 @@ namespace ApokPT.RocketPlugins
                     return;
                 }
 
-                bool hasKitPermission = caller.Permissions.Contains("givekit." + callParams[0].ToLower()) || caller.Permissions.Contains("givekit.*");
+                bool hasKitPermission = caller.IsAdmin || caller.Permissions.Contains("givekit." + callParams[0].ToLower()) || caller.Permissions.Contains("givekit.*");
 
                 if (callParams.Length == 1)
                 {
