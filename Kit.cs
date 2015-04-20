@@ -1,16 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace ApokPT.RocketPlugins
 {
     public class Kit
     {
-        public Kit() { }
-
         public string Name;
+        
 
         [XmlArrayItem(ElementName = "Item")]
         public List<KitItem> Items;
-        public int Cooldown = 0;
+        public double Cooldown;
+
+        private Kit() { }
+
+        public Kit(string name, double cooldown, List<KitItem> items) {
+            Name = name;
+            Cooldown = cooldown;
+            Items = items;
+        }
     }
 }
