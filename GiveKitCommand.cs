@@ -22,12 +22,23 @@ namespace ApokPT.RocketPlugins
             {
                 string[] oper = command.Split('/');
 
+                
+                if (oper[0] == "?")
+                {
+                    int rnd = UnityEngine.Random.Range(0, GiveKit.Instance.Configuration.Kits.Count - 1);
+                    oper[0] = GiveKit.Instance.Configuration.Kits[rnd].Name;
+                }
+
                 if (oper.Length == 1)
+                {
                     // Give kit to self because of no target parameter
                     GiveKit.Instance.Give(caller, oper[0], caller.CharacterName);
+                }
                 else
+                {
                     // Give kit to targe parameter
                     GiveKit.Instance.Give(caller, oper[0], oper[1]);
+                }
             }
            
         }

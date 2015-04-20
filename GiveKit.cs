@@ -47,6 +47,13 @@ namespace ApokPT.RocketPlugins
                         kits.Add(kit);
                     }
                 }
+
+                if (player.Permissions.Contains("givekit.onjoin.?"))
+                {
+                    int rnd = UnityEngine.Random.Range(0, GiveKit.Instance.Configuration.Kits.Count - 1);
+                    kits.Add(GiveKit.Instance.Configuration.Kits[rnd]);
+                }
+
                 if (kits.Count >= 0)
                 {
                     timer = new System.Threading.Timer(obj =>
