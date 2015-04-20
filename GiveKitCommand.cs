@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace pt.manuelbarbosa.rocketplugin
+namespace ApokPT.RocketPlugins
 {
     class GiveKitCommand : IRocketCommand
     {

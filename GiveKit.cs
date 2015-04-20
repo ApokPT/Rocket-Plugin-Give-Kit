@@ -11,7 +11,7 @@ using System.Globalization;
 using UnityEngine;
 using System.Threading;
 
-namespace pt.manuelbarbosa.rocketplugin
+namespace ApokPT.RocketPlugins
 {
     class GiveKit : RocketPlugin<GiveKitConfiguration>
     {

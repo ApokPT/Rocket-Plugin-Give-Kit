@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace pt.manuelbarbosa.rocketplugin
+namespace ApokPT.RocketPlugins
 {
     public class GiveKitConfiguration : RocketConfiguration
     {
