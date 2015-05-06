@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace ApokPT.RocketPlugins
 {
-    public class GiveKitConfiguration : RocketConfiguration
+    public class GiveKitConfiguration : IRocketConfiguration
     {
         public bool Enabled = true;
 
@@ -15,7 +15,7 @@ namespace ApokPT.RocketPlugins
         public bool StripBeforeGiving = true;
         public bool ResetCooldownOnDeath = true;
 
-        public RocketConfiguration DefaultConfiguration
+        public IRocketConfiguration DefaultConfiguration
         {
             get
             {
