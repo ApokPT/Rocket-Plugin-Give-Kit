@@ -151,7 +151,7 @@ namespace ApokPT.RocketPlugins
             {
                 double gCD = getGlobalCooldown(caller);
 
-                if (gCD > 0)
+                if (gCD > 0 && !caller.IsAdmin)
                 {
                     RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_cooldown_command", gCD));
                     return;
@@ -159,7 +159,7 @@ namespace ApokPT.RocketPlugins
 
                 double kCD = getKitCooldown(caller, kitId);
 
-                if (kCD > 0)
+                if (kCD > 0 && !caller.IsAdmin)
                 {
                     RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_cooldown_kit", kCD));
                     return;

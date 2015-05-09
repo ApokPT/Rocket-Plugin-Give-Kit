@@ -7,8 +7,10 @@ namespace ApokPT.RocketPlugins
 {
     class GiveKitCommand : IRocketCommand
     {
-        public void Execute(RocketPlayer caller, string command)
+        public void Execute(RocketPlayer caller, string[] cmd)
         {
+
+            string command = String.Join(" ", cmd);
 
             if (!GiveKit.Instance.Configuration.Enabled) return;
 
