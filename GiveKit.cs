@@ -186,7 +186,7 @@ namespace ApokPT.RocketPlugins
                 foreach (KitItem item in selectedKit.Items) target.GiveItem(item.ItemId, item.Amount);
                 RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_delivered_to_player", textInfo.ToTitleCase(kitId), target.CharacterName));
                 if (!caller.Equals(target)) RocketChatManager.Say(target, GiveKit.Instance.Translate("command_givekit_recieved_by_player", textInfo.ToTitleCase(kitId)));
-                updateCooldowns(caller, selectedKit);
+                if (!caller.IsAdmin && !caller.Permissions.Contains("givekit.nocooldown")) updateCooldowns(caller, selectedKit);
 
             }
         }

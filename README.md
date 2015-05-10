@@ -28,6 +28,7 @@ givekit.[kit_name]			| allow caller to use [kit_name]
 givekit.*				| allow caller to list, use and share any avaiable kit
 givekit.onjoin.[kit_name]		| will give [kit_name] to the player when he joins the server
 givekit.onjoin.?		| will give a random kit to the player when he joins the server
+givekit.nocooldown		| group is not affected by givekit cooldown
 _(if you add multiple givekit.onlin permissions, it will give them all to that player)_
 
 
