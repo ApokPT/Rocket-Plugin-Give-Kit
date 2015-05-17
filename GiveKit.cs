@@ -1,4 +1,7 @@
-﻿using Rocket.RocketAPI;
+﻿using Rocket.Unturned;
+using Rocket.Unturned.Events;
+using Rocket.Unturned.Player;
+using Rocket.Unturned.Plugins;
 using SDG;
 using Steamworks;
 using System;
@@ -25,9 +28,9 @@ namespace ApokPT.RocketPlugins
             {
                 if (GiveKit.Instance.Configuration.ResetCooldownOnDeath)
                 {
-                    Rocket.RocketAPI.Events.RocketPlayerEvents.OnPlayerDeath += RocketPlayerEvents_OnPlayerDeath;
+                    RocketPlayerEvents.OnPlayerDeath += RocketPlayerEvents_OnPlayerDeath;
                 }
-                Rocket.RocketAPI.Events.RocketServerEvents.OnPlayerConnected += RocketServerEvents_OnPlayerConnected;
+                RocketServerEvents.OnPlayerConnected += RocketServerEvents_OnPlayerConnected;
             }
         }
 
@@ -88,7 +91,7 @@ namespace ApokPT.RocketPlugins
         {
             if (!caller.IsAdmin && !caller.Permissions.Contains("givekit") && !caller.Permissions.Contains("givekit.*"))
             {
-                RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_no_permissions"));
+                RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_no_permissions"));
                 return;
             }
 
@@ -118,16 +121,16 @@ namespace ApokPT.RocketPlugins
 
             if (caller.IsAdmin || caller.Permissions.Contains("givekit.share") || caller.Permissions.Contains("givekit.*"))
             {
-                RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_instructions_share"));
+                RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_instructions_share"));
             }
             else
             {
-                RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_instructions"));
+                RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_instructions"));
             }
 
             foreach (string kitString in kitLists)
             {
-                RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_available_kits", kitString));
+                RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_available_kits", kitString));
             }
             return;
         }
@@ -139,12 +142,12 @@ namespace ApokPT.RocketPlugins
             Kit selectedKit = getKitByString(kitId);
             if (selectedKit == null)
             {
-                RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_kit_not_found", textInfo.ToTitleCase(kitId)));
+                RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_kit_not_found", textInfo.ToTitleCase(kitId)));
                 return;
             }
             else if (target == null)
             {
-                RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_player_not_found", textInfo.ToTitleCase(player)));
+                RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_player_not_found", textInfo.ToTitleCase(player)));
                 return;
             }
             else
@@ -153,7 +156,7 @@ namespace ApokPT.RocketPlugins
 
                 if (gCD > 0 && !caller.IsAdmin)
                 {
-                    RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_cooldown_command", gCD));
+                    RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_cooldown_command", gCD));
                     return;
                 }
 
@@ -161,7 +164,7 @@ namespace ApokPT.RocketPlugins
 
                 if (kCD > 0 && !caller.IsAdmin)
                 {
-                    RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_cooldown_kit", kCD));
+                    RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_cooldown_kit", kCD));
                     return;
                 }
 
@@ -169,7 +172,7 @@ namespace ApokPT.RocketPlugins
                 {
                     if (!forceGive && !(caller.IsAdmin || caller.Permissions.Contains("givekit." + kitId.ToLower()) || caller.Permissions.Contains("givekit.*")))
                     {
-                        RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_no_permissions_kit", kitId.ToLower()));
+                        RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_no_permissions_kit", kitId.ToLower()));
                         return;
                     }
                 }
@@ -177,15 +180,15 @@ namespace ApokPT.RocketPlugins
                 {
                     if (!(caller.IsAdmin || caller.Permissions.Contains("givekit.share") || caller.Permissions.Contains("givekit.*")))
                     {
-                        RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_no_permissions_share"));
+                        RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_no_permissions_share"));
                         return;
                     }
                 }
 
                 if (GiveKit.Instance.Configuration.StripBeforeGiving) target.Inventory.Clear();
                 foreach (KitItem item in selectedKit.Items) target.GiveItem(item.ItemId, item.Amount);
-                RocketChatManager.Say(caller, GiveKit.Instance.Translate("command_givekit_delivered_to_player", textInfo.ToTitleCase(kitId), target.CharacterName));
-                if (!caller.Equals(target)) RocketChatManager.Say(target, GiveKit.Instance.Translate("command_givekit_recieved_by_player", textInfo.ToTitleCase(kitId)));
+                RocketChat.Say(caller, GiveKit.Instance.Translate("command_givekit_delivered_to_player", textInfo.ToTitleCase(kitId), target.CharacterName));
+                if (!caller.Equals(target)) RocketChat.Say(target, GiveKit.Instance.Translate("command_givekit_recieved_by_player", textInfo.ToTitleCase(kitId)));
                 if (!caller.IsAdmin && !caller.Permissions.Contains("givekit.nocooldown")) updateCooldowns(caller, selectedKit);
 
             }

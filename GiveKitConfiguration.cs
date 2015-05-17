@@ -1,10 +1,11 @@
-﻿using Rocket.RocketAPI;
+﻿using Rocket.API;
+
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace ApokPT.RocketPlugins
 {
-    public class GiveKitConfiguration : IRocketConfiguration
+    public class GiveKitConfiguration : IRocketPluginConfiguration
     {
         public bool Enabled = true;
 
@@ -15,7 +16,7 @@ namespace ApokPT.RocketPlugins
         public bool StripBeforeGiving = true;
         public bool ResetCooldownOnDeath = true;
 
-        public IRocketConfiguration DefaultConfiguration
+        public IRocketPluginConfiguration DefaultConfiguration
         {
             get
             {
